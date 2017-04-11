@@ -10,7 +10,7 @@ const connect = require('gulp-connect');
 function compile(watch) {
     const bundler = watchify(
         browserify({
-            entries: ['./src/app.js'],
+            entries: ['./self/app.js'],        /* hier self oder src, dann gulp stop/start */
             debug: true,
             extensions: [' ', 'js']
         }).transform(babel.configure({
