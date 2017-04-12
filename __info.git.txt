@@ -1,0 +1,16 @@
+FORK:
+fork in github, in Intellij öffnen
+$ git remote -v
+origin  https://github.com/Reto7/javascript-snippets (fetch)
+origin  https://github.com/Reto7/javascript-snippets (push)
+$ git remote add upstream https://github.com/ibwgr/javascript-snippets
+$ git remote -v
+origin  https://github.com/Reto7/javascript-snippets (fetch)
+origin  https://github.com/Reto7/javascript-snippets (push)
+upstream        https://github.com/ibwgr/javascript-snippets (fetch)
+upstream        https://github.com/ibwgr/javascript-snippets (push)
+----------------------------
+$ git pull upstream master
+----------------------------
+$ git pull (origin)
+$ git push (origin)
