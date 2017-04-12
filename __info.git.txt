@@ -1,16 +1,16 @@
 FORK:
 fork in github, in Intellij öffnen
 $ git remote -v
-origin  https://github.com/Reto7/javascript-snippets (fetch)
-origin  https://github.com/Reto7/javascript-snippets (push)
-$ git remote add upstream https://github.com/ibwgr/javascript-snippets
+origin  https://github.com/Reto7/todomvc-es6-custom (fetch)
+origin  https://github.com/Reto7/todomvc-es6-custom (push)
+$ git remote add upstream https://github.com/ibwgr/todomvc-es6-custom
 $ git remote -v
-origin  https://github.com/Reto7/javascript-snippets (fetch)
-origin  https://github.com/Reto7/javascript-snippets (push)
-upstream        https://github.com/ibwgr/javascript-snippets (fetch)
-upstream        https://github.com/ibwgr/javascript-snippets (push)
+origin  https://github.com/Reto7/todomvc-es6-custom (fetch)
+origin  https://github.com/Reto7/todomvc-es6-custom (push)
+upstream        https://github.com/ibwgr/todomvc-es6-custom (fetch)
+upstream        https://github.com/ibwgr/todomvc-es6-custom (push)
 ----------------------------
-$ git pull upstream master
+$ git pull upstream master         von Ueli
 ----------------------------
-$ git pull (origin)
+$ git pull (origin)                von mir
 $ git push (origin)
