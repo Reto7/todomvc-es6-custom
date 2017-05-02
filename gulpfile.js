@@ -13,7 +13,9 @@ function compile(watch) {
             entries: ['./self-v1/app.js'],        /* hier self oder src, dann gulp stop/start */
             debug: true,
             extensions: [' ', 'js']
-        }).transform(babel.configure({
+        })
+        .add("node_modules/babel-polyfill")
+        .transform(babel.configure({
             presets: ["es2015"]
         })));
 
