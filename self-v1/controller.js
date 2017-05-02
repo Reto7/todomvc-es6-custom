@@ -4,23 +4,25 @@ export default class {
 
 
     // $ ist nur eine Namenskonvention fuer DOM Knoten
-    constructor($doc) {
+    constructor(view) {
         console.log("running controller.js - constructor")
 
-        this.$doc = $doc
+        let items = this.getItems()
+        view.renderItems(items)
+
         // queryselector ist ein CSS selector, deshalb fuer ein ID Feld die #
-        let $input = $doc.querySelector("#new-todo")
-        $input.addEventListener("change", this.onChangeInput.bind(this))
+        //let $input = $doc.querySelector("#new-todo")
+        //$input.addEventListener("change", this.onChangeInput.bind(this))
     }
 
     // ist somit unit-testbar
     // target ist der ausloesende Event! kommt hier also von $input.addEventListener
     onChangeInput(ev){
         console.log("Feldinhalt neu: " +ev.target.value)
-        let $list = this.$doc.querySelector("#list")
-        let $li = this.$doc.createElement("li")
-        $li.innerText = ev.target.value;
-        $list.appendChild($li)
+        // let $list = this.$doc.querySelector("#list")
+        // let $li = this.$doc.createElement("li")
+        // $li.innerText = ev.target.value;
+        // $list.appendChild($li)
     }
 
     /*
@@ -28,5 +30,15 @@ export default class {
         console.log(this)
     })
     */
+
+
+    // fake/mock aus model lesen
+    getItems(){
+        return [
+
+            {text: 'Einkaufen'}
+            ,{text: 'Auto waschen'}
+        ]
+    }
 
 }
