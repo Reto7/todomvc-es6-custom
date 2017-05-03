@@ -10,20 +10,24 @@ export default class {
         let items = this.getItems()
         view.renderItems(items)
 
-        // queryselector ist ein CSS selector, deshalb fuer ein ID Feld die #
-        //let $input = $doc.querySelector("#new-todo")
-        //$input.addEventListener("change", this.onChangeInput.bind(this))
+        //view.onAddItem(this.onAddItem)
+
     }
 
-    // ist somit unit-testbar
-    // target ist der ausloesende Event! kommt hier also von $input.addEventListener
-    onChangeInput(ev){
-        console.log("Feldinhalt neu: " +ev.target.value)
-        // let $list = this.$doc.querySelector("#list")
-        // let $li = this.$doc.createElement("li")
-        // $li.innerText = ev.target.value;
-        // $list.appendChild($li)
+    onAddItem(item){
+        // save to db
+        // render item on view
     }
+
+    // // ist somit unit-testbar
+    // // target ist der ausloesende Event! kommt hier also von $input.addEventListener
+    // onChangeInput(ev){
+    //     console.log("Feldinhalt neu: " +ev.target.value)
+    //     // let $list = this.$doc.querySelector("#list")
+    //     // let $li = this.$doc.createElement("li")
+    //     // $li.innerText = ev.target.value;
+    //     // $list.appendChild($li)
+    // }
 
     /*
     $doc.addEventListener("click", ()=> {
@@ -32,12 +36,12 @@ export default class {
     */
 
 
-    // fake/mock aus model lesen
+    // fake/mock aus model (store) lesen
     getItems(){
         return [
 
-            {text: 'Einkaufen'}
-            ,{text: 'Auto waschen'}
+            {title: 'Einkaufen'}
+            ,{title: 'Auto waschen'}
         ]
     }
 
