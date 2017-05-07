@@ -6,8 +6,8 @@ export default class{
     constructor($doc){
         this.$doc = $doc
 
-        // queryselector ist ein CSS selector, deshalb fuer ein ID Feld die #
-        let $input = this.$doc.querySelector("#new-todo")
+        // queryselector ist ein CSS selector, deshalb fuer ein ID Feld die #  (oder ein . bei class=)
+        let $input = this.$doc.querySelector(".new-todo")
 
         $input.addEventListener("change", this.onChangeInput.bind(this))
     }
@@ -17,6 +17,7 @@ export default class{
     onChangeInput(ev){
         console.log("Feldinhalt neu: " +ev.target.value)
         // TODO HAUSAUFGABE -- wenn "change" Event auftritt, soll Controller onAddItem(item) aufgerufen werden
+        this.onAddItemHandler(ev.target.value)
 
         // let $list = this.$doc.querySelector("#list")
         // let $li = this.$doc.createElement("li")
@@ -24,15 +25,22 @@ export default class{
         // $list.appendChild($li)
     }
 
-    renderItems(items){
-        let $list = this.$doc.querySelector("#list")
-        $list.innerHTML = items.map(this.renderItem)
-        // items.forEach((item) => {
-        //     this.renderItem(item)
-        // })
-
+    // TODO hier bekommen wir die ganze addItem Funktion vom Controller, macht aber keinen Sinn...
+    onAddItemHandler(item){
+        console.log('View.onAddItemHandler : ' + item)
     }
 
+
+    // FULL ITEM LIST
+     renderItems(items){
+         let $list = this.$doc.querySelector(".todo-list")
+         $list.innerHTML = items.map(this.renderItem)
+         // items.forEach((item) => {
+         //     this.renderItem(item)
+         // })
+     }
+
+     // SINGLE ITEM
     renderItem(item){
         return `<li data-id="${item.id}">
             <label>${item.title}</label>

@@ -7,16 +7,22 @@ export default class {
     constructor(view) {
         console.log("running controller.js - constructor")
 
+        // Variable bzw. Array enthaellt ALLE items
+        this.meineItems = []
+
+        // fake/mock model (store) simulieren
+        this.addItem({title: 'staubsaugen'})
+        this.addItem({title: 'telefonieren'})
+        this.addItem({title: 'Koffer packen'})
+
+        // aus store lesen
         let items = this.getItems()
+
         view.renderItems(items)
 
+        //view.onAddItemHandler(this.onAddItem)
         //view.onAddItem(this.onAddItem)
 
-    }
-
-    onAddItem(item){
-        // save to db
-        // render item on view
     }
 
     // // ist somit unit-testbar
@@ -36,13 +42,22 @@ export default class {
     */
 
 
+    onAddItem(item){
+        console.log('Controller.onAddItem : ' + item)
+        // save to db
+        addItem(item)
+        // render item on view
+        view.renderItems(items)
+    }
+
     // fake/mock aus model (store) lesen
     getItems(){
-        return [
+        return this.meineItems
+    }
 
-            {title: 'Einkaufen'}
-            ,{title: 'Auto waschen'}
-        ]
+    addItem(item){
+        console.log('item add: ' +item)
+        this.meineItems.push(item)
     }
 
 }
