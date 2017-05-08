@@ -18,7 +18,7 @@ export default class{
     onChangeInput(ev){
         console.log("Feldinhalt neu: " +ev.target.value)
         // TODO HAUSAUFGABE -- wenn "change" Event auftritt, soll Controller onAddItem(item) aufgerufen werden
-        this.onAddItemHandler(ev.target.value)
+        //this.onAddItemHandler(ev.target.value)
         
         // TODO, hier uebergeben wir einen String, im Controller ist ein "item" aber nicht nur ein String, sondern ein Objekt
         this.onAddItemCallbackFromController(ev.target.value)   /* neu */

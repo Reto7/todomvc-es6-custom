@@ -43,10 +43,10 @@ export default class {
     */
 
 
-    onAddItem(item){
-        console.log('Controller.onAddItem : ' + item)
+    onAddItem(it){
+        console.log('Controller.onAddItem : ' + it)
         // save to db
-        addItem(item)
+        addItem({title: it})
         // render item on view
         view.renderItems(items)
     }
