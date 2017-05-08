@@ -19,7 +19,9 @@ export default class{
         console.log("Feldinhalt neu: " +ev.target.value)
         // TODO HAUSAUFGABE -- wenn "change" Event auftritt, soll Controller onAddItem(item) aufgerufen werden
         this.onAddItemHandler(ev.target.value)
-        this.onAddItemCallbackFromController(ev.target.value)
+        
+        // TODO, hier uebergeben wir einen String, im Controller ist ein "item" aber nicht nur ein String, sondern ein Objekt
+        this.onAddItemCallbackFromController(ev.target.value)   /* neu */
 
         // let $list = this.$doc.querySelector("#list")
         // let $li = this.$doc.createElement("li")
@@ -27,10 +29,11 @@ export default class{
         // $list.appendChild($li)
     }
 
-    // TODO hier bekommen wir die ganze addItem Funktion vom Controller, macht aber keinen Sinn...
-    onAddItemHandler(item){
-        console.log('View.onAddItemHandler : ' + item)
-        this.onAddItemCallbackFromController = item
+    // TODO hier bekommen wir die ganze addItem Funktion vom Controller, hier weisen wir einfach die ganze Funktion einer Variable zu
+    // Die Variable wird dann hier in der View benuetzte (nicht diese onAddItemHandler Funktion! Die wird 1x vom Controller aufgerufen)
+    onAddItemHandler(controllerFunktion){
+        console.log('View.onAddItemHandler : ' + controllerFunktion)
+        this.onAddItemCallbackFromController = controllerFunktion       /* neu */
     }
    
     
