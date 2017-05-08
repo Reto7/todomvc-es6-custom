@@ -20,8 +20,9 @@ export default class {
 
         view.renderItems(items)
 
-        //view.onAddItemHandler(this.onAddItem)
-        //view.onAddItem(this.onAddItem)
+        view.onAddItemHandler(this.onAddItem)   /* neu */
+      //view.onAddItem(this.onAddItem)   
+        
 
     }
 
