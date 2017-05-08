@@ -5,6 +5,7 @@
 export default class{
     constructor($doc){
         this.$doc = $doc
+        this.onAddItemCallbackFromController = null  /* neu */
 
         // queryselector ist ein CSS selector, deshalb fuer ein ID Feld die #  (oder ein . bei class=)
         let $input = this.$doc.querySelector(".new-todo")
@@ -18,6 +19,7 @@ export default class{
         console.log("Feldinhalt neu: " +ev.target.value)
         // TODO HAUSAUFGABE -- wenn "change" Event auftritt, soll Controller onAddItem(item) aufgerufen werden
         this.onAddItemHandler(ev.target.value)
+        this.onAddItemCallbackFromController(ev.target.value)
 
         // let $list = this.$doc.querySelector("#list")
         // let $li = this.$doc.createElement("li")
@@ -28,9 +30,10 @@ export default class{
     // TODO hier bekommen wir die ganze addItem Funktion vom Controller, macht aber keinen Sinn...
     onAddItemHandler(item){
         console.log('View.onAddItemHandler : ' + item)
+        this.onAddItemCallbackFromController = item
     }
-
-
+   
+    
     // FULL ITEM LIST
      renderItems(items){
          let $list = this.$doc.querySelector(".todo-list")
