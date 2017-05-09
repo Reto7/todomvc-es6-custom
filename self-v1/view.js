@@ -2,7 +2,10 @@
  * Created by rk on 02.05.17.
  */
 'use strict'
-
+/* private methoden // TODO, wie renderItem
+const onChangeInput = Symbol()
+ */
+const renderItem = Symbol()
 export default class{
     constructor($doc){
         this.$doc = $doc
@@ -42,10 +45,10 @@ export default class{
 
     addItem(item){
         console.log('(view) item add: ' +item)
-        let $elem = document.createElement('div')
+        let $elem = document.createElement('div')   // obwohl wir ja kein div brauchen ... siehe weiter unten
         let html = this.renderItem(item)
         $elem.innerHTML = html
-        this.$list.appendChild($elem.childNodes[0])  // <li> innerhalb ydiv>
+        this.$list.appendChild($elem.childNodes[0])  // <li> ist das 1. Element innerhalb <div>
 
 
     }
@@ -60,7 +63,7 @@ export default class{
      }
 
      // SINGLE ITEM
-    renderItem(item){
+    [renderItem](item){
         return `<li data-id="${item.id}">
             <label>${item.title}</label>
             <button class="destroy"></button>
