@@ -2,14 +2,17 @@
  * Created by rk on 02.05.17.
  */
 'use strict'
+
 export default class{
     constructor($doc){
         this.$doc = $doc
+        this.$list = this.$doc.querySelector(".todo-list")
         this.onAddItemCallbackFromController = null  /* neu */
 
         // queryselector ist ein CSS selector, deshalb fuer ein ID Feld die #  (oder ein . bei class=)
         let $input = this.$doc.querySelector(".new-todo")
 
+        // bei eventhandler waere "this" der $input, wir wollen aber die View, deshalb das binding
         $input.addEventListener("change", this.onChangeInput.bind(this))
     }
 
@@ -17,11 +20,12 @@ export default class{
     // target ist der ausloesende Event! kommt hier also von $input.addEventListener
     onChangeInput(ev){
         console.log("Feldinhalt neu: " +ev.target.value)
-        // TODO HAUSAUFGABE -- wenn "change" Event auftritt, soll Controller onAddItem(item) aufgerufen werden
-        //this.onAddItemHandler(ev.target.value)
-        
-        // TODO, hier uebergeben wir einen String, im Controller ist ein "item" aber nicht nur ein String, sondern ein Objekt
-        this.onAddItemCallbackFromController(ev.target.value)   /* neu */
+        let item = {
+            title: ev.target.value
+        }
+        //  hier uebergeben wir einen String,
+        // im Controller ist ein "item" aber nicht nur ein String, sondern ein Objekt
+        this.onAddItemCallbackFromController(item)   /* neu TODO besser handler nennen*/
 
         // let $list = this.$doc.querySelector("#list")
         // let $li = this.$doc.createElement("li")
@@ -35,12 +39,21 @@ export default class{
         console.log('View.onAddItemHandler : ' + controllerFunktion)
         this.onAddItemCallbackFromController = controllerFunktion       /* neu */
     }
-   
+
+    addItem(item){
+        console.log('(view) item add: ' +item)
+        let $elem = document.createElement('div')
+        let html = this.renderItem(item)
+        $elem.innerHTML = html
+        this.$list.appendChild($elem.childNodes[0])  // <li> innerhalb ydiv>
+
+
+    }
     
     // FULL ITEM LIST
      renderItems(items){
-         let $list = this.$doc.querySelector(".todo-list")
-         $list.innerHTML = items.map(this.renderItem)
+
+         this.$list.innerHTML = items.map(this.renderItem)
          // items.forEach((item) => {
          //     this.renderItem(item)
          // })

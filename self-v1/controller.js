@@ -7,20 +7,20 @@ export default class {
     constructor(view) {
         console.log("running controller.js - constructor")
 
+        this.view = view;
+
         // Variable bzw. Array enthaellt ALLE items
         this.meineItems = []
 
         // fake/mock model (store) simulieren
         this.addItem({title: 'staubsaugen'})
         this.addItem({title: 'telefonieren'})
-        this.addItem({title: 'Koffer packen'})
-
         // aus store lesen
         let items = this.getItems()
 
         view.renderItems(items)
 
-        view.onAddItemHandler(this.onAddItem)   /* neu */
+        view.onAddItemHandler(this.onAddItem.bind(this))   /* this context auf CONTROLLER */
       //view.onAddItem(this.onAddItem)   
         
 
@@ -43,12 +43,13 @@ export default class {
     */
 
 
-    onAddItem(it){
-        console.log('Controller.onAddItem : ' + it)
+    onAddItem(item){
+        console.log('Controller.onAddItem : ' + item)
+        this.view.addItem(item)
         // save to db
-        addItem({title: it})
+
         // render item on view
-        view.renderItems(items)
+        //view.renderItems(items)
     }
 
     // fake/mock aus model (store) lesen
