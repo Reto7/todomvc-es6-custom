@@ -2,10 +2,10 @@
  * Created by rk on 02.05.17.
  */
 'use strict'
-/* private methoden // TODO, wie renderItem
+/* private methoden, diese werden nicht exportiert, somit auch nicht zugreifbar */
 const onChangeInput = Symbol()
- */
 const renderItem = Symbol()
+
 export default class{
     constructor($doc){
         this.$doc = $doc
@@ -16,14 +16,16 @@ export default class{
         let $input = this.$doc.querySelector(".new-todo")
 
         // bei eventhandler waere "this" der $input, wir wollen aber die View, deshalb das binding
-        $input.addEventListener("change", this.onChangeInput.bind(this))
+        //$input.addEventListener("change", this.onChangeInput.bind(this))
+        $input.addEventListener("change", this[onChangeInput].bind(this))
     }
 
     // ist somit unit-testbar
     // target ist der ausloesende Event! kommt hier also von $input.addEventListener
-    onChangeInput(ev){
+    [onChangeInput](ev){
         console.log("Feldinhalt neu: " +ev.target.value)
         let item = {
+            id: Date.now(),
             title: ev.target.value
         }
         //  hier uebergeben wir einen String,
@@ -46,23 +48,22 @@ export default class{
     addItem(item){
         console.log('(view) item add: ' +item)
         let $elem = document.createElement('div')   // obwohl wir ja kein div brauchen ... siehe weiter unten
-        let html = this.renderItem(item)
+        //let html = this.renderItem(item)
+        let html = this[renderItem](item)
         $elem.innerHTML = html
         this.$list.appendChild($elem.childNodes[0])  // <li> ist das 1. Element innerhalb <div>
-
-
     }
     
     // FULL ITEM LIST
      renderItems(items){
-
-         this.$list.innerHTML = items.map(this.renderItem)
+         //this.$list.innerHTML = items.map(this.renderItem)
+         this.$list.innerHTML = items.map(this[renderItem]).join('')
          // items.forEach((item) => {
          //     this.renderItem(item)
          // })
      }
 
-     // SINGLE ITEM
+    // SINGLE ITEM
     [renderItem](item){
         return `<li data-id="${item.id}">
             <label>${item.title}</label>
