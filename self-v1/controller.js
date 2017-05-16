@@ -19,7 +19,6 @@ export default class {
 
         // aus store lesen
         // hier kommt nun ein Promise zurueck!!
-        //let items =
         this.getItems().then((items)=>{
             view.renderItems(items)
         })
