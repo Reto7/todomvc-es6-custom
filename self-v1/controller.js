@@ -4,21 +4,28 @@ export default class {
 
 
     // $ ist nur eine Namenskonvention fuer DOM Knoten
-    constructor(view) {
+    constructor(view, store) {
         console.log("running controller.js - constructor")
 
         this.view = view;
+        this.store = store;
 
         // Variable bzw. Array enthaellt ALLE items
         this.meineItems = []
 
         // fake/mock model (store) simulieren
-        this.addItem({title: 'staubsaugen'})
-        this.addItem({title: 'telefonieren'})
-        // aus store lesen
-        let items = this.getItems()
+        //this.addItem({title: 'staubsaugen'})
+        //this.addItem({title: 'telefonieren'})
 
-        view.renderItems(items)
+        // aus store lesen
+        // hier kommt nun ein Promise zurueck!!
+        //let items =
+        this.getItems().then((items)=>{
+            view.renderItems(items)
+        })
+
+
+
 
         view.onAddItemHandler(this.onAddItem.bind(this))   /* this context auf CONTROLLER */
       //view.onAddItem(this.onAddItem)   
@@ -54,7 +61,10 @@ export default class {
 
     // fake/mock aus model (store) lesen
     getItems(){
-        return this.meineItems
+        //return this.meineItems
+
+        // hier kommt nun ein Promise zurueck!!
+        return this.store.getItems()
     }
 
     addItem(item){
