@@ -19,11 +19,9 @@ export default class {
 
         // aus store lesen
         // hier kommt nun ein Promise zurueck!!
-        this.getItems().then((items)=>{
+        this.store.getItems().then((items)=>{
             view.renderItems(items)
         })
-
-
 
 
         view.onAddItemHandler(this.onAddItem.bind(this))   /* this context auf CONTROLLER */
@@ -57,7 +55,7 @@ export default class {
         // render item on view
         //view.renderItems(items)
     }
-
+/*
     // fake/mock aus model (store) lesen
     getItems(){
         //return this.meineItems
@@ -65,6 +63,7 @@ export default class {
         // hier kommt nun ein Promise zurueck!!
         return this.store.getItems()
     }
+    */
 
     addItem(item){
         console.log('item add: ' +item)
