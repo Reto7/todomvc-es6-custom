@@ -54,7 +54,7 @@ export default class{
         this.$list.appendChild($elem.childNodes[0])  // <li> ist das 1. Element innerhalb <div>
     }
     
-    // FULL ITEM LIST
+    // FULL ITEM LIST  (wird vom Controller aufgerufen)
      renderItems(items){
          //this.$list.innerHTML = items.map(this.renderItem)
          this.$list.innerHTML = items.map(this[renderItem]).join('')
