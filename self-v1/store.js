@@ -12,8 +12,12 @@ export default class Store {
         // fetch gibt ein Promis zurueck
         return fetch ('http://localhost:3100/items')
             .then((resp) => {
-                // TODO hier muesste man noch 200 oder 500 abfragen ...
-                return resp.json()
-                })
+                //  hier noch 200 oder 500 abfragen
+                if(resp.ok) {
+                    return resp.json
+                } else {
+                    return Promise.reject(resp)
+                }
+            })
     }
 }

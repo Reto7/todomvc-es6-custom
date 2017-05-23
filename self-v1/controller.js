@@ -19,9 +19,12 @@ export default class {
 
         // aus store lesen
         // hier kommt nun ein Promise zurueck!!
-        this.store.getItems().then((items)=>{
-            view.renderItems(items)
-        })
+        this.store.getItems()
+            .then((items)=>{
+                 view.renderItems(items)
+                // koennte man auch so schreiben:  .then(view.renderItems.bind(this)
+            })
+            .catch(view.renderError.bind(this))      // catched von store error
 
 
         view.onAddItemHandler(this.onAddItem.bind(this))   /* this context auf CONTROLLER */

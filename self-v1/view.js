@@ -63,6 +63,10 @@ export default class{
          // })
      }
 
+     renderError(error) {
+         console.log("DEBUG", error)
+     }
+
     // SINGLE ITEM
     [renderItem](item){
         return `<li data-id="${item.id}">
