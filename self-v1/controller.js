@@ -60,6 +60,8 @@ export default class {
         // render item on view
         //view.renderItems(items)
     }
+
+
 /*
     // fake/mock aus model (store) lesen
     getItems(){

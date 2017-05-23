@@ -38,7 +38,7 @@ export default class{
         // $list.appendChild($li)
     }
 
-    // TODO hier bekommen wir die ganze addItem Funktion vom Controller, hier weisen wir einfach die ganze Funktion einer Variable zu
+    // hier bekommen wir die ganze addItem Funktion vom Controller, hier weisen wir einfach die ganze Funktion einer Variable zu
     // Die Variable wird dann hier in der View benuetzte (nicht diese onAddItemHandler Funktion! Die wird 1x vom Controller aufgerufen)
     onAddItemHandler(controllerFunktion){
         console.log('View.onAddItemHandler : ' + controllerFunktion)
@@ -55,13 +55,17 @@ export default class{
     }
     
     // FULL ITEM LIST  (wird vom Controller aufgerufen)
-     renderItems(items){
-         //this.$list.innerHTML = items.map(this.renderItem)
-         this.$list.innerHTML = items.map(this[renderItem]).join('')
-         // items.forEach((item) => {
-         //     this.renderItem(item)
-         // })
-     }
+    // TODO hausaufgabe, es tut nicht !!!!! daten lesen aus file
+    renderItems(items){
+        this.$list.innerHTML = items.map(this.renderItem).join('')
+    }
+     // renderItems(items){
+     //     this.$list.innerHTML = items.map(this[renderItem]).join('')
+     //     // items.forEach((item) => {
+     //     //     this.renderItem(item)
+     //     // })
+     // }
+
 
      renderError(error) {
          console.log("DEBUG", error)
