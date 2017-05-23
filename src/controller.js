@@ -9,14 +9,16 @@ export default class Controller{
             [viewEvents.onRemoveItem]: this.removeItem.bind(this)
         })
 
-        view.renderItems(store.all())
+        store.all()
+        .then(view.renderItems.bind(view))
+        .catch(view.renderError.bind(view))
     }
 
     addItem(item){
         let val = this.makeValidatorObject(this.validateNewItem(item));
         if(!val.hasErrors){
             this.store.add(item)
-            this.view.add(item)
+                .then(this.view.add.bind(this.view, item))
         }
         return val
     }
